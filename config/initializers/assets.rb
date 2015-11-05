@@ -13,5 +13,6 @@ Rails.application.config.assets.version = '1.0'
  Rails.application.config.assets.precompile += %w( jquery-1.8.0.min.js )
  Rails.application.config.assets.precompile += %w( style.css )
  Rails.application.config.assets.precompile += %w( flexslider.css )
+ Rails.application.config.assets.precompile += %w( login.css )
 
 
