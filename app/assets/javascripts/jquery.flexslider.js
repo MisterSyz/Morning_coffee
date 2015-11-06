@@ -70,7 +70,6 @@
           }
           return false;
         }());
-        slider.ensureAnimationEnd = '';
         // CONTROLSCONTAINER:
         if (slider.vars.controlsContainer !== "") slider.controlsContainer = $(slider.vars.controlsContainer).length > 0 && $(slider.vars.controlsContainer);
         // MANUAL:
@@ -720,20 +719,10 @@
               slider.animating = false;
               slider.currentSlide = slider.animatingTo;
             }
-            
-            // Unbind previous transitionEnd events and re-bind new transitionEnd event
             slider.container.unbind("webkitTransitionEnd transitionend");
             slider.container.bind("webkitTransitionEnd transitionend", function() {
-              clearTimeout(slider.ensureAnimationEnd);
               slider.wrapup(dimension);
             });
-
-            // Insurance for the ever-so-fickle transitionEnd event
-            clearTimeout(slider.ensureAnimationEnd);
-            slider.ensureAnimationEnd = setTimeout(function() {
-              slider.wrapup(dimension);
-            }, slider.vars.animationSpeed + 100);
-
           } else {
             slider.container.animate(slider.args, slider.vars.animationSpeed, slider.vars.easing, function(){
               slider.wrapup(dimension);
@@ -882,9 +871,9 @@
           slider.cloneOffset = 1;
           // clear out old clones
           if (type !== "init") slider.container.find('.clone').remove();
-          // slider.container.append(slider.slides.first().clone().addClass('clone').attr('aria-hidden', 'true')).prepend(slider.slides.last().clone().addClass('clone').attr('aria-hidden', 'true'));
-		      methods.uniqueID( slider.slides.first().clone().addClass('clone').attr('aria-hidden', 'true') ).appendTo( slider.container );
-		      methods.uniqueID( slider.slides.last().clone().addClass('clone').attr('aria-hidden', 'true') ).prependTo( slider.container );
+          slider.container.append(slider.slides.first().clone().addClass('clone').attr('aria-hidden', 'true')).prepend(slider.slides.last().clone().addClass('clone').attr('aria-hidden', 'true'));
+		      methods.uniqueID( slider.slides.first().clone().addClass('clone') ).appendTo( slider.container );
+		      methods.uniqueID( slider.slides.last().clone().addClass('clone') ).prependTo( slider.container );
         }
         slider.newSlides = $(slider.vars.selector, slider);
 
