@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'information/contact'
+
+  get 'information/about'
+
+  get 'pay/shoppingCart'
+
+  get 'pay/checkout'
+
+  get 'shopping/allItem'
+
+  get 'shopping/singleProduct'
+
   get 'order/selection'
 
   get 'order/detail'
