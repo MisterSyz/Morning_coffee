@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#main'
+  
   get 'information/contact'
 
   get 'information/about'
