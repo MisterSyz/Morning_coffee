@@ -80,7 +80,7 @@
                 <h4>CHECKOUT</h4>
             </div>
             <div class="col-md-2 cart">
-                <h4><a href="#">chart (2 items)</a></h4>
+                <h4><a href="#">chart (<%= totalItemNumber %> items)</a></h4>
                 <ul>
                     <li><a href="#">home /</a></li>
                     <li><a href="#">products</a></li>
@@ -223,6 +223,32 @@
                         <a href="#" class="cart-remove"></a>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <img src="/assets/product4-small.jpg" alt=""/>
+                    </td>
+                    <td class="cart-title">
+                        <a href="#">Wool Two-Piece Suit</a>
+                    </td>
+                    <td>
+                         $99.00
+                    </td>
+                    <td>
+                        <form action='#'>
+                            <div class="qtyminus">
+                            </div>
+                            <input type='text' name="quantity" value='1' class="qty"/>
+                            <div class="qtyplus">
+                            </div>
+                        </form>
+                    </td>
+                    <td class="cart-total">
+                         $99.00
+                    </td>
+                    <td>
+                        <a href="#" class="cart-remove"></a>
+                    </td>
+                </tr>
                 </table>
             </div>
             <div class="taxat">
@@ -270,7 +296,7 @@
                              Cart Subtotal
                         </th>
                         <td>
-                            <strong>$178.00</strong>
+                            <strong><%= totalPrice %></strong>
                         </td>
                     </tr>
                     <tr>
@@ -286,7 +312,7 @@
                              Order Total
                         </th>
                         <td>
-                            <strong>$178.00</strong>
+                            <strong><%= totalPrice %></strong>
                         </td>
                     </tr>
                     </tbody>

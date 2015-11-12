@@ -81,7 +81,7 @@
                 <h4>products</h4>
             </div>
             <div class="col-md-2 cart">
-                <h4><a href="#">chart (2 items)</a></h4>
+                <h4><a href="#">chart (<%= totalItemNumber%> items)</a></h4>
                 <ul>
                     <li><a href="#">home /</a></li>
                     <li><a href="#">products</a></li>
@@ -113,22 +113,24 @@
                     </ul>
                 </div>
                 <div class="product-details col-md-6">
-                    <h1>TASTY CHOCOLATE</h1>
+                    <h1> <%= getProductName %></h1>
                     <p class="price">
-                         $23.00
+                         <%= getUnitPrice %>
                     </p>
                     <span>$27.00</span>
                     <p>
                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non vestibulum massa, sit amet bibendum eros. In accumsan dignissim tellus ac faucibus. Mauris vel sollicitudin metus. Praesent ut neque nec velit euismod fermentum.
                     </p>
-                    <form action="#">
+                    <form action="/pay/shoppingCart">
                         <div class="qtyminus">
                         </div>
                         <input type="text" name="quantity" value="1" class="qty">
+                        <input type="hidden" name="type" value="hotChocolate">
                         <div class="qtyplus">
                         </div>
+                        <input type="submit" value="buy" >
                     </form>
-                    <a href="#">Add to Cart</a>
+                    <!--a> href="#">Add to Cart</a -->
                     <hr>
                     <div class="availability">
                         <p>

@@ -80,7 +80,7 @@
         <h4>CHECKOUT</h4>
       </div>
       <div class="col-md-2 cart">
-        <h4><a href="#">chart (2 items)</a></h4>
+        <h4><a href="#">chart (<%= totalItemNumber %> items)</a></h4>
         <ul>
           <li><a href="#">home /</a></li>
           <li><a href="#">products</a></li>
@@ -595,7 +595,7 @@
                            Order Total
                         </th>
                         <td>
-                          <strong>$178.00</strong>
+                          <strong><%= totalPrice %></strong>
                         </td>
                       </tr>
                       </tbody>

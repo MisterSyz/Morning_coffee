@@ -80,7 +80,7 @@
                 <h4>products</h4>
             </div>
             <div class="col-md-2 cart">
-                <h4><a href="#">chart (2 items)</a></h4>
+                <h4><a href="#">chart (<%= totalItemNumber %> items)</a></h4>
                 <ul>
                     <li><a href="#">home /</a></li>
                     <li><a href="#">products</a></li>
@@ -110,7 +110,7 @@
                 <div class="col-md-4 col-sm-6">
                     <img src="/assets/product2.jpg" alt="">
                     <div class="text">
-                        <a href="/shopping/singleProduct"><span>
+                        <a href="/shopping/singleProduct?type=hotChocolate"><span>
                         Mix of Chocolates </span></a>
                         <p>
                             <%= getProduct("hotChocolate") %>
@@ -130,7 +130,7 @@
                 <div class="col-md-4 col-sm-6">
                     <img src="/assets/product4.jpg" alt="">
                     <div class="text">
-                        <a href="/shopping/singleProduct"><span>
+                        <a href="/shopping/singleProduct?type=latte"><span>
                         Whole Nuts </span></a>
                         <p>
                             <%= getProduct("latte") %>
@@ -142,7 +142,7 @@
                 <div class="col-md-4 col-sm-6">
                     <img src="/assets/product2.jpg" alt="">
                     <div class="text">
-                        <a href="/shopping/singleProduct"><span>
+                        <a href="/shopping/singleProduct?type=HazelNut"><span>
                         HazelNut Choco </span></a>
                         <p>
                              $ 15.00
@@ -152,7 +152,7 @@
                 <div class="col-md-4 col-sm-6">
                     <img src="/assets/product3.jpg" alt="">
                     <div class="text">
-                        <a href="/shopping/singleProduct"><span>
+                        <a href="/shopping/singleProduct?type=TastyCake"><span>
                         Tasty Cake </span></a>
                         <p>
                              $ 19.00
@@ -162,7 +162,7 @@
                 <div class="col-md-4 col-sm-6">
                     <img src="/assets/product4.jpg" alt="">
                     <div class="text">
-                        <a href="/shopping/singleProduct"><span>
+                        <a href="/shopping/singleProduct/SweetChok"><span>
                         SweetChok</span></a>
                         <p>
                              $ 21.00
@@ -174,7 +174,7 @@
                 <div class="col-md-4 col-sm-6">
                     <img src="/assets/product2.jpg" alt="">
                     <div class="text">
-                        <a href="/shopping/singleProduct"><span>
+                        <a href="/shopping/singleProduct/DelicioChocolate"><span>
                         Delicio Chocolate </span></a>
                         <p>
                              $ 23.00
