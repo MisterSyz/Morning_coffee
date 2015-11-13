@@ -110,35 +110,35 @@
                          Quantity
                     </th>
                     <th>
-                         Total
+                         Total 
                     </th>
                     <th>
                     </th>
                 </tr>
                 <!-- Item #1 -->
-                <% for i in 0 .. (totalItemNumber - 1) do %>
+                <% for i in  0 .. (getUniqueItemHashLength - 1) do %>
                 <tr>
 
                     <td>
                         <img src="/assets/product1-small.jpg" alt=""/>
                     </td>
                     <td class="cart-title">
-                        <a href="#"><%= getSingleProductName(i) %></a>
+                        <a href="#"><%=  getUniqueItemName(i)%></a>
                     </td>
                     <td>
-                         <%= getSingleProductName(i) %>
+                         <%= getUnitPrice(i)%>
                     </td>
                     <td>
                         <form action='#'>
                             <div class="qtyminus">
                             </div>
-                            <input type='text' name="quantity" value='1' class="qty"/>
+                            <input type='text' name="quantity" value=<%= getUniqueItemNumber(i) %> class="qty"/>
                             <div class="qtyplus">
                             </div>
                         </form>
                     </td>
                     <td class="cart-total">
-                         <%= getUnitPrice(i) %>
+                        <%= getUniqueItemNumber(i) * getUnitPrice(i) %>
                     </td>
                     <td>
                         <a href="#" class="cart-remove"></a>
