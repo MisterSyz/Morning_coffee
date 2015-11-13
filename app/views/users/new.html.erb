@@ -11,24 +11,30 @@
 <body>
 <div class="container">
 	<section id="content">
-		<form action="">
-			<h1>Sign Up Form</h1>
-			<div>
-				<input type="text" placeholder="New Username" required="" id="username" />
-			</div>
-			<div>
-				<input type="email" placeholder="New emial" required="" id="email" />
-			</div>
-			<div>
-				<input type="password" placeholder="New Password" required="" id="password" />
-			</div>
-			<div>
-				<input type="password" placeholder="Confirm Password" required="" id="password" />
-			</div>
-			<div>
-				<input type="submit" value="Sign Up" />
-			</div>
-		</form><!-- form -->
+
+		<%= form_for(@user) do |f| %>
+
+		  <h1>Sign Up Form</h1>
+		  <div>
+	      <%= f.text_field :name %>
+	      </div>
+
+	      <div>
+	      <%= f.email_field :email %>
+	      </div>
+
+	      <div>
+	      <%= f.password_field :password %>
+	      </div>
+
+	      <div>
+	      <%= f.password_field :password_confirmation %>
+	      </div>
+
+	      <div>
+	      <%= f.submit "Submit" %>
+	      </div>
+	    <% end %>
 		<div class="button">
 			<a href="/home/main">Back to browse</a>
 		</div><!-- button -->
