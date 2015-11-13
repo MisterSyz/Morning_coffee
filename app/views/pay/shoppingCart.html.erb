@@ -110,145 +110,46 @@
                          Quantity
                     </th>
                     <th>
-                         Total
+                         Total 
                     </th>
                     <th>
                     </th>
                 </tr>
                 <!-- Item #1 -->
+                <% for i in  0 .. (getUniqueItemHashLength - 1) do %>
                 <tr>
+
                     <td>
                         <img src="/assets/product1-small.jpg" alt=""/>
                     </td>
                     <td class="cart-title">
-                        <a href="#">Converse All Star Trainers</a>
+                        <a href="#"><%= getUniqueItemName(i) %></a>
                     </td>
                     <td>
-                         $79.00
-                    </td>
-                    <td>
-                        <form action='#'>
-                            <div class="qtyminus">
-                            </div>
-                            <input type='text' name="quantity" value='1' class="qty"/>
-                            <div class="qtyplus">
-                            </div>
-                        </form>
-                    </td>
-                    <td class="cart-total">
-                         $79.00
-                    </td>
-                    <td>
-                        <a href="#" class="cart-remove"></a>
-                    </td>
-                </tr>
-                <!-- Item #2 -->
-                <tr>
-                    <td>
-                        <img src="/assets/product2-small.jpg" alt=""/>
-                    </td>
-                    <td class="cart-title">
-                        <a href="#">Wool Two-Piece Suit</a>
-                    </td>
-                    <td>
-                         $99.00
+                         <%= getUniqueItemName(i) %>
                     </td>
                     <td>
                         <form action='#'>
                             <div class="qtyminus">
                             </div>
-                            <input type='text' name="quantity" value='1' class="qty"/>
+                            <input type='text' name="quantity" value=<%= getUniqueItemNumber(i) %> class="qty"/>
                             <div class="qtyplus">
                             </div>
                         </form>
                     </td>
                     <td class="cart-total">
-                         $99.00
+                        <%= getUniqueItemNumber(i) * getUnitPrice(i) %>
                     </td>
                     <td>
                         <a href="#" class="cart-remove"></a>
                     </td>
                 </tr>
-                <!-- Item #3 -->
-                <tr>
-                    <td>
-                        <img src="/assets/product3-small.jpg" alt=""/>
-                    </td>
-                    <td class="cart-title">
-                        <a href="#">Wool Two-Piece Suit</a>
-                    </td>
-                    <td>
-                         $99.00
-                    </td>
-                    <td>
-                        <form action='#'>
-                            <div class="qtyminus">
-                            </div>
-                            <input type='text' name="quantity" value='1' class="qty"/>
-                            <div class="qtyplus">
-                            </div>
-                        </form>
-                    </td>
-                    <td class="cart-total">
-                         $99.00
-                    </td>
-                    <td>
-                        <a href="#" class="cart-remove"></a>
-                    </td>
-                </tr>
-                <!-- Item #4 -->
-                <tr>
-                    <td>
-                        <img src="/assets/product4-small.jpg" alt=""/>
-                    </td>
-                    <td class="cart-title">
-                        <a href="#">Wool Two-Piece Suit</a>
-                    </td>
-                    <td>
-                         $99.00
-                    </td>
-                    <td>
-                        <form action='#'>
-                            <div class="qtyminus">
-                            </div>
-                            <input type='text' name="quantity" value='1' class="qty"/>
-                            <div class="qtyplus">
-                            </div>
-                        </form>
-                    </td>
-                    <td class="cart-total">
-                         $99.00
-                    </td>
-                    <td>
-                        <a href="#" class="cart-remove"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="/assets/product4-small.jpg" alt=""/>
-                    </td>
-                    <td class="cart-title">
-                        <a href="#">Wool Two-Piece Suit</a>
-                    </td>
-                    <td>
-                         $99.00
-                    </td>
-                    <td>
-                        <form action='#'>
-                            <div class="qtyminus">
-                            </div>
-                            <input type='text' name="quantity" value='1' class="qty"/>
-                            <div class="qtyplus">
-                            </div>
-                        </form>
-                    </td>
-                    <td class="cart-total">
-                         $99.00
-                    </td>
-                    <td>
-                        <a href="#" class="cart-remove"></a>
-                    </td>
-                </tr>
+
+                <%end%>
+                
+               
+                
+
                 </table>
             </div>
             <div class="taxat">
