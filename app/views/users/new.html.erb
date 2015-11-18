@@ -16,28 +16,25 @@
 
 		  <h1>Sign Up Form</h1>
 		  <div>
-	      <%= f.text_field :name %>
+	      <%= f.text_field :name, :placeholder => "Enter name" %>
 	      </div>
 
 	      <div>
-	      <%= f.email_field :email %>
+	      <%= f.email_field :email, :placeholder => "Enter email" %>
 	      </div>
 
 	      <div>
-	      <%= f.password_field :password %>
+	      <%= f.password_field :password, :placeholder => "Enter password" %>
 	      </div>
 
 	      <div>
-	      <%= f.password_field :password_confirmation %>
+	      <%= f.password_field :password_confirmation, :placeholder => "Re-enter password" %>
 	      </div>
 
 	      <div>
 	      <%= f.submit "Submit" %>
 	      </div>
 	    <% end %>
-		<div class="button">
-			<a href="/home/main">Back to browse</a>
-		</div><!-- button -->
 	</section><!-- content -->
 </div><!-- container -->
 </body>
