@@ -1,5 +1,5 @@
 class ShoppingController < ApplicationController
-	@@menu = {"latte" => 5.0, "mocha" => 4.0, "iceCoffee" => 3.0, "hotChocolate" => 2.0, "HazelNut" => 15.0,"TastyCake" => 19.0, "SweetChok" => 21.0, "DelicioChocolate" => 23.0}
+	@@menu = {"latte" => 5.0, "mocha" => 4.0, "iceCoffee" => 3.0, "hotChocolate" => 2.0, "HazelNut" => 15.0,"TastyCake" => 19.0, "SweetChok" => 21.0, "DelicioChocolate" => 23.0, "espresso" => 9.0}
 
   def allItem
   end
