@@ -1,0 +1,286 @@
+From 38cb5ae286fc613c33be2a1335362b4962314d43 Mon Sep 17 00:00:00 2001
+From: YupengLin <linyupeng2400@hotmail.com>
+Date: Thu, 12 Nov 2015 21:49:01 -0500
+Subject: [PATCH] fix shopping cart
+
+---
+ app/controllers/pay_controller.rb         |  42 ++++++++++
+ app/views/pay/shoppingCart.html.erb       | 125 ++++--------------------------
+ app/views/shopping/allItem.html.erb       |   6 +-
+ app/views/shopping/singleProduct.html.erb |   2 +-
+ 4 files changed, 59 insertions(+), 116 deletions(-)
+
+diff --git a/app/controllers/pay_controller.rb b/app/controllers/pay_controller.rb
+index ad9e785..bc80321 100644
+--- a/app/controllers/pay_controller.rb
++++ b/app/controllers/pay_controller.rb
+@@ -1,10 +1,21 @@
+ class PayController < ApplicationController
+   @@shopItem = Array.new(0)
++  @@itemSummary =  Hash.new(0)
++
++ 
+   def shoppingCart
+   	num = params[:quantity].to_i
+   	for i in 0 .. num - 1
+   		@@shopItem.push(params[:type])
++  		if(@@itemSummary.has_key?(params[:type]))
++  			freq = @@itemSummary[params[:type]] + 1
++  			@@itemSummary[params[:type]] = freq
++  		else
++  			@@itemSummary.store(params[:type], 1)
++  		end
++
+   	end
++   
+   end
+ 
+   def checkout
+@@ -27,6 +38,37 @@ class PayController < ApplicationController
+     priceSum
+   end
+ 
++ 
++ 
++## get the unit price by index, the index is the itemSummary index
++  def getUnitPrice(index)
++  	coffeeMenu = ShoppingController.menu
++  	keys = @@itemSummary.keys
++  	coffeeMenu[keys[index]]
++  end
++
++ 
++
++  def getUniqueItemHashLength
++  	@@itemSummary.length
++  end
++
++  def getUniqueItemName(index)
++  	keys = @@itemSummary.keys
++  	keys[index]
++  end
++
++  def getUniqueItemNumber(index)
++  	keys = @@itemSummary.keys
++  	@@itemSummary[keys[index]]
++  end
++
++  
++
++  helper_method :getUnitPrice
+   helper_method :totalItemNumber
+   helper_method :totalPrice
++  helper_method :getUniqueItemNumber
++  helper_method :getUniqueItemName
++  helper_method :getUniqueItemHashLength
+ end
+diff --git a/app/views/pay/shoppingCart.html.erb b/app/views/pay/shoppingCart.html.erb
+index 56586f0..ed4c92e 100644
+--- a/app/views/pay/shoppingCart.html.erb
++++ b/app/views/pay/shoppingCart.html.erb
+@@ -110,145 +110,46 @@
+                          Quantity
+                     </th>
+                     <th>
+-                         Total
++                         Total 
+                     </th>
+                     <th>
+                     </th>
+                 </tr>
+                 <!-- Item #1 -->
++                <% for i in  0 .. (getUniqueItemHashLength - 1) do %>
+                 <tr>
++
+                     <td>
+                         <img src="/assets/product1-small.jpg" alt=""/>
+                     </td>
+                     <td class="cart-title">
+-                        <a href="#">Converse All Star Trainers</a>
++                        <a href="#"><%= getUniqueItemName(i) %></a>
+                     </td>
+                     <td>
+-                         $79.00
++                         <%= getUniqueItemName(i) %>
+                     </td>
+                     <td>
+                         <form action='#'>
+                             <div class="qtyminus">
+                             </div>
+-                            <input type='text' name="quantity" value='1' class="qty"/>
++                            <input type='text' name="quantity" value=<%= getUniqueItemNumber(i) %> class="qty"/>
+                             <div class="qtyplus">
+                             </div>
+                         </form>
+                     </td>
+                     <td class="cart-total">
+-                         $79.00
+-                    </td>
+-                    <td>
+-                        <a href="#" class="cart-remove"></a>
+-                    </td>
+-                </tr>
+-                <!-- Item #2 -->
+-                <tr>
+-                    <td>
+-                        <img src="/assets/product2-small.jpg" alt=""/>
+-                    </td>
+-                    <td class="cart-title">
+-                        <a href="#">Wool Two-Piece Suit</a>
+-                    </td>
+-                    <td>
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <form action='#'>
+-                            <div class="qtyminus">
+-                            </div>
+-                            <input type='text' name="quantity" value='1' class="qty"/>
+-                            <div class="qtyplus">
+-                            </div>
+-                        </form>
+-                    </td>
+-                    <td class="cart-total">
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <a href="#" class="cart-remove"></a>
+-                    </td>
+-                </tr>
+-                <!-- Item #3 -->
+-                <tr>
+-                    <td>
+-                        <img src="/assets/product3-small.jpg" alt=""/>
+-                    </td>
+-                    <td class="cart-title">
+-                        <a href="#">Wool Two-Piece Suit</a>
+-                    </td>
+-                    <td>
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <form action='#'>
+-                            <div class="qtyminus">
+-                            </div>
+-                            <input type='text' name="quantity" value='1' class="qty"/>
+-                            <div class="qtyplus">
+-                            </div>
+-                        </form>
+-                    </td>
+-                    <td class="cart-total">
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <a href="#" class="cart-remove"></a>
+-                    </td>
+-                </tr>
+-                <!-- Item #4 -->
+-                <tr>
+-                    <td>
+-                        <img src="/assets/product4-small.jpg" alt=""/>
+-                    </td>
+-                    <td class="cart-title">
+-                        <a href="#">Wool Two-Piece Suit</a>
+-                    </td>
+-                    <td>
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <form action='#'>
+-                            <div class="qtyminus">
+-                            </div>
+-                            <input type='text' name="quantity" value='1' class="qty"/>
+-                            <div class="qtyplus">
+-                            </div>
+-                        </form>
+-                    </td>
+-                    <td class="cart-total">
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <a href="#" class="cart-remove"></a>
+-                    </td>
+-                </tr>
+-                <tr>
+-                    <td>
+-                        <img src="/assets/product4-small.jpg" alt=""/>
+-                    </td>
+-                    <td class="cart-title">
+-                        <a href="#">Wool Two-Piece Suit</a>
+-                    </td>
+-                    <td>
+-                         $99.00
+-                    </td>
+-                    <td>
+-                        <form action='#'>
+-                            <div class="qtyminus">
+-                            </div>
+-                            <input type='text' name="quantity" value='1' class="qty"/>
+-                            <div class="qtyplus">
+-                            </div>
+-                        </form>
+-                    </td>
+-                    <td class="cart-total">
+-                         $99.00
++                        <%= getUniqueItemNumber(i) * getUnitPrice(i) %>
+                     </td>
+                     <td>
+                         <a href="#" class="cart-remove"></a>
+                     </td>
+                 </tr>
++
++                <%end%>
++                
++               
++                
++
+                 </table>
+             </div>
+             <div class="taxat">
+diff --git a/app/views/shopping/allItem.html.erb b/app/views/shopping/allItem.html.erb
+index a94d8e6..620ee6c 100644
+--- a/app/views/shopping/allItem.html.erb
++++ b/app/views/shopping/allItem.html.erb
+@@ -162,7 +162,7 @@
+                 <div class="col-md-4 col-sm-6">
+                     <img src="/assets/product4.jpg" alt="">
+                     <div class="text">
+-                        <a href="/shopping/singleProduct/SweetChok"><span>
++                        <a href="/shopping/singleProduct?type=SweetChok"><span>
+                         SweetChok</span></a>
+                         <p>
+                              $ 21.00
+@@ -174,7 +174,7 @@
+                 <div class="col-md-4 col-sm-6">
+                     <img src="/assets/product2.jpg" alt="">
+                     <div class="text">
+-                        <a href="/shopping/singleProduct/DelicioChocolate"><span>
++                        <a href="/shopping/singleProduct?type=DelicioChocolate"><span>
+                         Delicio Chocolate </span></a>
+                         <p>
+                              $ 23.00
+@@ -184,7 +184,7 @@
+                 <div class="col-md-4 col-sm-6">
+                     <img src="/assets/product3.jpg" alt="">
+                     <div class="text">
+-                        <a href="/shopping/singleProduct"><span>
++                        <a href="/shopping/singleProduct?type=mocha"><span>
+                         Rafaello </span></a>
+                         <p>
+                              $ 46.00
+diff --git a/app/views/shopping/singleProduct.html.erb b/app/views/shopping/singleProduct.html.erb
+index ef1d2cc..71803b1 100644
+--- a/app/views/shopping/singleProduct.html.erb
++++ b/app/views/shopping/singleProduct.html.erb
+@@ -125,7 +125,7 @@
+                         <div class="qtyminus">
+                         </div>
+                         <input type="text" name="quantity" value="1" class="qty">
+-                        <input type="hidden" name="type" value="hotChocolate">
++                        <input type="hidden" name="type" value=<%= getProductName%>>
+                         <div class="qtyplus">
+                         </div>
+                         <input type="submit" value="buy" >
+-- 
+1.9.3 (Apple Git-50)
+

@@ -1,6 +1,7 @@
 class PayController < ApplicationController
   @@shopItem = Array.new(0)
   @@itemSummary =  Hash.new(0)
+  
 
  
   def shoppingCart
@@ -36,6 +37,9 @@ class PayController < ApplicationController
   		priceSum = priceSum + coffeeMenu[@@shopItem.at(i)]
   	end
     priceSum
+  end
+
+  def allOrder
   end
 
  
